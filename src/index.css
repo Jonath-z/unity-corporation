@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: "Work Sans", sans-serif;
+  }
+
+  body {
+    @apply text-gray-800 antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600;
+  }
+
+  .stats-number {
+    @apply font-bold text-orange-400;
+  }
+
+  .side-nav {
+    @apply fixed left-0 right-0 top-0 w-full bg-blue-950 flex justify-between items-center py-8 text-white/60;
+  }
+
+  .nav-link {
+    @apply text-sm text-white/60 hover:text-white/90 transition-colors;
+  }
+
+  .section-title {
+    @apply font-bold text-white mb-6;
+  }
+
+  .highlight-word {
+    @apply text-orange-400;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-[#2D0A16];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#3D1521] rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#4D1D29];
+}
