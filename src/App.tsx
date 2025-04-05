@@ -237,28 +237,35 @@ function App() {
 
         <section className="py-16 md:py-24 max-w-7xl mx-auto max-lg:px-5">
           <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl mb-12 text-center">
+            Nos Clients
+          </h2>
+          <div className="flex justify-center items-center gap-10">
+            <a href="https://congochallenge.cd/" target="_blank">
+              <img
+                  src="/clients/LOGO-CONGO-CHALENGE.png"
+                  alt="Congo Challenge"
+                  className="bg-blue-950 w-64 rounded-full"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24 max-w-7xl mx-auto max-lg:px-5">
+          <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl mb-12 text-center">
             Notre équipe
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 justify-center items-center">
             <div>
               <img
-                src="/team.webp"
-                alt="team"
+                src="/lydia-1-1.png"
+                alt="Lydia Mbula"
                 className="size-56 rounded-full mx-auto"
               />
-              <p className="text-center text-blue-950 mt-3">Marie Okowe</p>
+              <p className="text-center text-blue-950 mt-3">Lydia Mbula</p>
             </div>
             <div>
               <img
-                src="/team.webp"
-                alt="team"
-                className="size-56 rounded-full mx-auto"
-              />
-              <p className="text-center text-blue-950 mt-3">Marie Okowe</p>
-            </div>
-            <div>
-              <img
-                src="/team.webp"
+                src="/partenaire-2.png"
                 alt="team"
                 className="size-56 rounded-full mx-auto"
               />
