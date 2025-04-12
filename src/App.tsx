@@ -244,8 +244,11 @@ function App() {
               <img
                   src="/clients/LOGO-CONGO-CHALENGE.png"
                   alt="Congo Challenge"
-                  className="bg-blue-950 w-64 rounded-full"
+                  className="bg-blue-950 w-64 max-md:w-32 rounded-full"
               />
+            </a>
+            <a href="#" className="text-white bg-blue-950 p-3 md:p-8 md:text-3xl rounded-full">
+              Cerdi-bas
             </a>
           </div>
         </section>
@@ -254,7 +257,7 @@ function App() {
           <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl mb-12 text-center">
             Notre équipe
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 max-md:gap-10 justify-center items-center">
             <div>
               <img
                 src="/lydia-1-1.png"
@@ -269,7 +272,7 @@ function App() {
                 alt="team"
                 className="size-56 rounded-full mx-auto"
               />
-              <p className="text-center text-blue-950 mt-3">Marie Okowe</p>
+              <p className="text-center text-blue-950 mt-3">Jospin Mwendeke</p>
             </div>
           </div>
         </section>
