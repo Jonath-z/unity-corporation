@@ -57,7 +57,7 @@ function MobileNav({
 
 function SideNav() {
   return (
-    <nav className="hidden lg:flex side-nav items-center px-5">
+    <nav className="hidden lg:flex side-nav items-center px-5 z-50">
       <div className="">
         <h1 className="text-orange-400 font-bold text-2xl">
           Unity Corporation.
@@ -90,16 +90,27 @@ function ServiceBox({
   title,
   description,
   icon: Icon,
+  cardClass,
+  iconClass,
 }: {
   title: string;
   description: string;
   icon: React.ElementType;
+  cardClass?: string;
+  iconClass?: string;
 }) {
   return (
-    <div className="border border-blue-900 p-6 md:p-8 rounded-lg bg-blue-950/20 group hover:bg-blue-950/30 transition-colors">
-      <Icon className="w-12 h-12 text-blue-950 mb-4" />
+    <div
+      className={
+        cardClass ||
+        "border border-blue-900 p-6 md:p-8 rounded-lg bg-blue-950/20 group hover:bg-blue-950/30 transition-colors"
+      }
+    >
+      <Icon className={iconClass || "w-12 h-12 text-blue-950 mb-4"} />
       <h3 className="text-blue-950/70 text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-black/60 text-sm leading-relaxed">{description}</p>
+      <p className="text-black/60 text-sm text-center leading-relaxed">
+        {description}
+      </p>
     </div>
   );
 }
@@ -116,7 +127,7 @@ function App() {
       />
 
       {/* Mobile Header */}
-      <div className="flex justify-between items-center p-6 lg:hidden bg-blue-950">
+      <div className="flex justify-between items-center p-6 lg:hidden z-50 bg-blue-950">
         <h1 className="text-orange-400 font-bold text-2xl">
           Unity Corporation.
         </h1>
@@ -130,21 +141,24 @@ function App() {
 
       {/* Main Content */}
       <main className="lg:pt-16">
-        <div className="bg-blue-950 px-6 relative">
-          <section className="min-h-screen isolate relative flex flex-col justify-center items-center max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-8xl font-bold mb-8 text-center text-white">
+        <div className="bg-blue-950 px-6 relative overflow-hidden">
+          <section className="min-h-screen isolate relative flex flex-col justify-center items-center max-w-7xl mx-auto z-10">
+            {/* Accent Bar */}
+            <div className="w-20 h-2 bg-orange-500 rounded-full mb-6 mt-8 md:mt-0"></div>
+            <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold mb-8 text-center text-white drop-shadow-lg tracking-tight">
               Bureau d’études et de conseil en{" "}
-              {/* <br className="hidden md:block" /> */}
-              <span className="highlight-word">développement</span>
+              <span className="highlight-word relative inline-block px-2">
+                <span className="relative z-10">développement</span>
+              </span>
             </h1>
-            <p className="text-white/60 text-center text-lg md:text-xl mb-12 max-w-2xl">
+            <p className="text-white/80 text-center text-lg md:text-xl mb-12 max-w-2xl shadow-sm">
               Accompagner le développement par l’expertise, l’innovation et
               l’intelligence collective.
             </p>
             <div className="flex flex-col md:flex-row gap-6 md:items-center">
-              <button className="bg-orange-500 text-white px-6 md:px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2">
+              <button className="bg-orange-500 text-white px-8 md:px-10 py-5 rounded-xl shadow-lg hover:bg-orange-600 hover:scale-105 transition-all font-semibold text-lg flex items-center justify-center gap-3">
                 Commencez avec nous
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-6 h-6" />
               </button>
             </div>
           </section>
@@ -178,78 +192,105 @@ function App() {
           </div>
         </section>
 
-        {/* Stats Section */}
-        {/* <section className="">
-          <div className="section-title pt-16 text-4xl md:text-5xl lg:text-6xl mb-12">
-            Trusted By
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8">
-            <div>
-              <p className="stats-number text-4xl opacity-30">Fikra Digital</p>
-            </div>
-            <div>
-              <p className="stats-number text-4xl opacity-30">Ogopa Studio</p>
-            </div>
-            <div>
-              <p className="stats-number text-4xl opacity-30">Ogopa Studio</p>
-            </div>
-          </div>
-        </section> */}
-
         {/* Competencies Section */}
-        <section className="py-16 md:py-24 max-w-7xl mx-auto max-lg:px-5">
-          <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl mb-12 text-center">
-            Domaines de compétences
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section className="relative py-16 md:py-24 max-lg:px-5 bg-gradient-to-br from-blue-100 via-white to-blue-50 overflow-hidden">
+          {/* Accent Bar and Title */}
+          <div className="flex flex-col items-center mb-12">
+            <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl text-center font-bold tracking-tight">
+              Domaines de compétences
+            </h2>
+            <div className="w-24 h-2 bg-orange-500 rounded-full mt-4"></div>
+          </div>
+          <div className="grid grid-cols-1 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-3 gap-10 px-2 md:px-0">
             <ServiceBox
               icon={ChartBar}
               title="Gestion des projets"
               description="Suivi, évaluation, apprentissage, redevabilité, évaluation d'impacts des projets de développement"
+              cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
+              iconClass="bg-blue-100 text-blue-700 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
               icon={Leaf}
               title="Développement rural"
               description="Développement, marketing et commercialisation des chaînes de valeur agricoles"
+              cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
+              iconClass="bg-green-100 text-green-700 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
               icon={Brain}
               title="Analyse des données"
               description="Collecte et analyse des données quantitatives et qualitatives"
+              cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
+              iconClass="bg-orange-100 text-orange-600 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
               icon={Building2}
               title="Planification"
               description="Développement rural, planification et gestion des projets de développement, moyens d'existence durable"
+              cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
+              iconClass="bg-blue-200 text-blue-900 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
               icon={ShieldCheck}
               title="Gestion environnementale"
               description="Études d'impact et solutions durables pour un développement respectueux de l'environnement"
+              cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
+              iconClass="bg-green-200 text-green-900 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
               icon={Users}
               title="Conduite du changement"
               description="Intelligence collective, design thinking, leadership, gestion des conflits et communication persuasive"
+              cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
+              iconClass="bg-orange-200 text-orange-900 rounded-full p-4 mb-4 shadow-md"
             />
           </div>
         </section>
 
-        <section className="py-16 md:py-24 max-w-7xl mx-auto max-lg:px-5">
-          <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl mb-12 text-center">
-            Nos Clients
-          </h2>
-          <div className="flex justify-center items-center gap-10">
-            <a href="https://congochallenge.cd/" target="_blank">
-              <img
+        <section className="relative py-16 md:py-24 max-lg:px-5 bg-gradient-to-br  overflow-hidden fade-in-section">
+          <div className="flex flex-col items-center mb-12 relative z-10">
+            <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl text-center font-bold tracking-tight">
+              Nos Clients
+            </h2>
+            <div className="w-24 h-2 bg-orange-500 rounded-full mt-4"></div>
+            <p className="text-blue-950/60 text-lg text-center mt-4 max-w-2xl">
+              Ils nous font confiance pour accompagner leurs projets de
+              développement.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12 relative z-10">
+            {/* Client 1 */}
+            <a
+              href="https://congochallenge.cd/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
+              <div className="bg-white/60 backdrop-blur-md rounded-2xl shadow-xl p-6 flex flex-col items-center justify-center w-96 h-56 hover:scale-105 hover:shadow-2xl transition-all border border-blue-100 glass-card">
+                <img
                   src="/clients/LOGO-CONGO-CHALENGE.png"
                   alt="Congo Challenge"
-                  className="bg-blue-950 w-64 max-md:w-32 rounded-full"
-              />
+                  className="w-fit h-24 object-contain mb-4 drop-shadow-md bg-orange-500 rounded-full"
+                />
+                <span className="text-blue-950 font-semibold text-lg group-hover:text-orange-500 transition-colors">
+                  Congo Challenge
+                </span>
+              </div>
             </a>
-            <a href="#" className="text-white bg-blue-950 p-3 md:p-8 md:text-3xl rounded-full">
-              Cerdi-bas
+            {/* Client 2 */}
+            <a href="#" className="group">
+              <div className="bg-white/60 backdrop-blur-md rounded-2xl shadow-xl p-6 flex flex-col items-center justify-center w-96 h-56 hover:scale-105 hover:shadow-2xl transition-all border border-blue-100 glass-card">
+                <div className="flex items-center justify-center w-fit h-24 bg-blue-950 rounded-full px-10 mb-4">
+                  <span className="text-white text-3xl font-bold">
+                    Cerdi-bas
+                  </span>
+                </div>
+                <span className="text-blue-950 font-semibold text-lg group-hover:text-orange-500 transition-colors">
+                  Cerdi-bas
+                </span>
+              </div>
             </a>
+            {/* Add more clients here as needed */}
           </div>
         </section>
 
@@ -278,21 +319,27 @@ function App() {
         </section>
 
         {/* Process Section */}
-        <section className="py-16 md:py-24 max-w-7xl mx-auto max-lg:px-5">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
-            <div>
-              <h2 className="section-title text-blue-950 text-4xl md:text-5xl lg:text-6xl">
-                Pourquoi traivailler
-                <br />
-                avec nous?
-              </h2>
-              <p className="max-w-xl text-black/40">
+        <section className="relative py-16 md:py-24 max-lg:px-5 bg-gradient-to-br from-blue-100 via-white to-blue-50 rounded-t-3xl shadow-xl overflow-hidden">
+          {/* Decorative Accent Bar */}
+          <div className="absolute left-0 top-10 h-32 w-2 bg-orange-400 rounded-full opacity-80"></div>
+          <div className="flex flex-col max-w-7xl mx-auto lg:flex-row lg:justify-between lg:items-start gap-8 relative z-10">
+            <div className="bg-white/10 rounded-2xl md:p-8 p-4 max-w-2xl">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="inline-block w-8 h-2 bg-blue-950 rounded-full"></span>
+                <h2 className="section-title text-blue-950 text-2xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                  Pourquoi travailler
+                  <br />
+                  avec nous?
+                </h2>
+              </div>
+              <p className="max-w-xl text-black/60 text-lg leading-relaxed">
                 Avec plus de 10 ans d’expérience avérée en Afrique
                 subsaharienne, Unity Corporation s’est imposée comme un
                 partenaire de confiance pour des acteurs majeurs du
                 développement. Nous avons accompagné une diversité de clients,
                 notamment des bailleurs de fonds, des programmes de coopération
-                bilatérale, des agences du *Système des Nations Unies, des
+                bilatérale, des agences du{" "}
+                <span className="italic">Système des Nations Unies</span>, des
                 organisations internationales, ainsi que des partenaires
                 étatiques et des acteurs du secteur privé. En intégrant une
                 approche inclusive et sensible au genre, nous favorisons un
@@ -301,15 +348,23 @@ function App() {
                 initiatives de transformation sociale et économique.
               </p>
             </div>
-            <button className="bg-orange-500 text-white px-6 md:px-8 py-4 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2">
-              Contectez nous
-              <ArrowRight className="w-5 h-5" />
+            <button className="bg-orange-500 text-white px-8 md:px-10 py-5 rounded-xl shadow-lg hover:bg-orange-600 hover:scale-105 transition-all font-semibold text-lg flex items-center justify-center gap-3">
+              Contactez-nous
+              <ArrowRight className="w-6 h-6" />
             </button>
           </div>
-          <div className="flex gap-6 mt-12 max-md:justify-center">
-            <Facebook className="w-6 h-6 text-black/60 hover:text-black/90 cursor-pointer" />
-            <Twitter className="w-6 h-6 text-black/60 hover:text-black/90 cursor-pointer" />
-            <Instagram className="w-6 h-6 text-black/60 hover:text-black/90 cursor-pointer" />
+          {/* Decorative Divider */}
+          <div className="my-12 border-t border-blue-200 mx-8"></div>
+          <div className="flex gap-8 mt-8 max-md:justify-center justify-center">
+            <a href="#" className="group">
+              <Facebook className="w-8 h-8 text-blue-950/60 group-hover:text-orange-500 transition-colors duration-200" />
+            </a>
+            <a href="#" className="group">
+              <Twitter className="w-8 h-8 text-blue-950/60 group-hover:text-orange-500 transition-colors duration-200" />
+            </a>
+            <a href="#" className="group">
+              <Instagram className="w-8 h-8 text-blue-950/60 group-hover:text-orange-500 transition-colors duration-200" />
+            </a>
           </div>
         </section>
       </main>
