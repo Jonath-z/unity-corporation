@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Building2,
   Users,
@@ -89,15 +89,13 @@ function SideNav() {
 function ServiceBox({
   title,
   description,
-  icon: Icon,
+  Icon,
   cardClass,
-  iconClass,
 }: {
   title: string;
   description: string;
-  icon: React.ElementType;
+  Icon: () => JSX.Element;
   cardClass?: string;
-  iconClass?: string;
 }) {
   return (
     <div
@@ -106,7 +104,7 @@ function ServiceBox({
         "border border-blue-900 p-6 md:p-8 rounded-lg bg-blue-950/20 group hover:bg-blue-950/30 transition-colors"
       }
     >
-      <Icon className={iconClass || "w-12 h-12 text-blue-950 mb-4"} />
+      <Icon />
       <h3 className="text-blue-950/70 text-lg font-semibold mb-2">{title}</h3>
       <p className="text-black/60 text-sm text-center leading-relaxed">
         {description}
@@ -164,7 +162,7 @@ function App() {
           </section>
         </div>
         {/* Mission Section */}
-        <section className="py-16 mt-20 max-lg:px-5">
+        <section className="py-16 max-lg:px-5">
           <div className="max-w-4xl mx-auto">
             <h2 className="section-title text-blue-950 text-center text-4xl md:text-5xl lg:text-6xl mb-12">
               Missions
@@ -203,46 +201,64 @@ function App() {
           </div>
           <div className="grid grid-cols-1 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-3 gap-10 px-2 md:px-0">
             <ServiceBox
-              icon={ChartBar}
+              Icon={() => (
+                <div className="p-2 bg-blue-200 rounded-full mb-4">
+                  <ChartBar className="text-blue-900" />
+                </div>
+              )}
               title="Gestion des projets"
               description="Suivi, évaluation, apprentissage, redevabilité, évaluation d'impacts des projets de développement"
               cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
-              iconClass="bg-blue-100 text-blue-700 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
-              icon={Leaf}
+              Icon={() => (
+                <div className="p-2 bg-green-200 rounded-full mb-4">
+                  <Leaf className="text-green-900" />
+                </div>
+              )}
               title="Développement rural"
               description="Développement, marketing et commercialisation des chaînes de valeur agricoles"
               cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
-              iconClass="bg-green-100 text-green-700 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
-              icon={Brain}
+              Icon={() => (
+                <div className="p-2 bg-orange-200 rounded-full mb-4">
+                  <Brain className="text-orange-900" />
+                </div>
+              )}
               title="Analyse des données"
               description="Collecte et analyse des données quantitatives et qualitatives"
               cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
-              iconClass="bg-orange-100 text-orange-600 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
-              icon={Building2}
+              Icon={() => (
+                <div className="p-2 bg-blue-200 rounded-full mb-4">
+                  <Building2 className="text-blue-900" />
+                </div>
+              )}
               title="Planification"
               description="Développement rural, planification et gestion des projets de développement, moyens d'existence durable"
               cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
-              iconClass="bg-blue-200 text-blue-900 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
-              icon={ShieldCheck}
+              Icon={() => (
+                <div className="p-2 bg-green-200 rounded-full mb-4">
+                  <ShieldCheck className="text-green-900" />
+                </div>
+              )}
               title="Gestion environnementale"
               description="Études d'impact et solutions durables pour un développement respectueux de l'environnement"
               cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
-              iconClass="bg-green-200 text-green-900 rounded-full p-4 mb-4 shadow-md"
             />
             <ServiceBox
-              icon={Users}
+              Icon={() => (
+                <div className="p-2 bg-orange-200 rounded-full mb-4">
+                  <Users className="text-orange-900" />
+                </div>
+              )}
               title="Conduite du changement"
               description="Intelligence collective, design thinking, leadership, gestion des conflits et communication persuasive"
               cardClass="bg-white/80 rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-transform border border-blue-100"
-              iconClass="bg-orange-200 text-orange-900 rounded-full p-4 mb-4 shadow-md"
             />
           </div>
         </section>
